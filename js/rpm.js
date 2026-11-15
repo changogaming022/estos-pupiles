@@ -1,16 +1,13 @@
-while (true) {
-    let rpm = Number(prompt("Ingresa las respiraciones por minuto:"));
-
-    if (rpm >= 12 && rpm <= 20) {
-        console.log("Respiraciones por minuto estables con " + rpm + " BPM");
-    }
-    if (rpm >= 21 && rpm <= 24) {
-        console.log("Respiraciones por minuto preocupantes con " + rpm + " BPM");
-    }
-    if (rpm >= 9 && rpm <= 11) {
-        console.log("Respiraciones por minuto bajas con " + rpm + " BPM");
-    }
-    if (rpm <= 8) {
-        console.log("Respiraciones por minuto peligrosamente bajas con " + rpm + " BPM");
-    }
+function evaluarRpm() {
+    const rpm = parseFloat(document.getElementById("rpm").value);
+    const res = document.getElementById("resultado-rpm");
+    if (isNaN(rpm)) { res.textContent = "Escribe un valor válido"; return; }
+    let texto;
+    if (rpm >= 25)      texto = "peligrosamente altas";
+    else if (rpm >= 21) texto = "preocupantes";
+    else if (rpm >= 12) texto = "estables";
+    else if (rpm >= 9)  texto = "bajas";
+    else                texto = "peligrosamente bajas";
+    res.textContent = "Respiraciones por minuto " + texto + " con " + rpm + " RPM";
+    guardarLectura("rpm", rpm);
 }

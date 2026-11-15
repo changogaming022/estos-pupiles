@@ -1,19 +1,13 @@
-while (true) {
-    let BPM = Number(prompt("Ingresa el ritmo cardiaco en BPM:"));
-
-    if (BPM >= 60 && BPM <= 100) {
-        console.log("Ritmo cardiaco estable con " + BPM + " BPM");
-    }
-
-    if (BPM >= 101 && BPM <= 120) {
-        console.log("Ritmo cardiaco preocupante con " + BPM + " BPM");
-    }
-
-    if (BPM >= 40 && BPM <= 59) {
-        console.log("Ritmo cardiaco bajo con " + BPM + " BPM");
-    }
-
-    if (BPM < 40) {
-        console.log("Ritmo cardiaco peligrosamente bajo con " + BPM + " BPM");
-    }
+function evaluarBpm() {
+    const BPM = parseFloat(document.getElementById("bpm").value);
+    const res = document.getElementById("resultado-bpm");
+    if (isNaN(BPM)) { res.textContent = "Escribe un valor válido"; return; }
+    let texto;
+    if (BPM >= 121)      texto = "peligrosamente alto";
+    else if (BPM >= 101) texto = "preocupante";
+    else if (BPM >= 60)  texto = "estable";
+    else if (BPM >= 40)  texto = "bajo";
+    else                 texto = "peligrosamente bajo";
+    res.textContent = "Ritmo cardiaco " + texto + " con " + BPM + " BPM";
+    guardarLectura("bpm", BPM);
 }

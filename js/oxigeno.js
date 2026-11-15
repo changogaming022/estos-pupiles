@@ -22,4 +22,5 @@ function evaluar() {
         adv.textContent = "Saturacion baja. Repite la medición y consulta a un medico.";
         adv.classList.remove("oculto");
     }
+    guardarLectura("oxigeno", O);
 }
