@@ -1,15 +1,13 @@
 function evaluarRpm() {
-    const rpm = parseFloat(document.getElementById("rpm").value);
+    const v = parseFloat(document.getElementById("rpm").value);
     const res = document.getElementById("resultado-rpm");
-    if (isNaN(rpm)) { res.textContent = "Escribe un valor válido"; pintarEstado("cuadro-rpm", "inválido"); return { valor: "-", estado: "inválido" }; }
-    let texto;
-    if (rpm >= 25)      texto = "peligrosamente altas";
-    else if (rpm >= 21) texto = "preocupantes";
-    else if (rpm >= 12) texto = "estables";
-    else if (rpm >= 9)  texto = "bajas";
-    else                texto = "peligrosamente bajas";
-    res.textContent = "Respiraciones por minuto " + texto + " con " + rpm + " RPM";
-    pintarEstado("cuadro-rpm", texto);
-    guardarLectura("rpm", rpm);
-    return { valor: rpm, estado: texto };
+    if (isNaN(v)) { res.textContent = "Escribe un valor válido"; res.className = "estado"; return; }
+    let texto, clase;
+    if (v >= 25)      { texto = "Peligrosamente altas"; clase = "malo"; }
+    else if (v >= 21) { texto = "Preocupantes"; clase = "alerta"; }
+    else if (v >= 12) { texto = "Estables"; clase = "ok"; }
+    else if (v >= 9) { texto = "Bajas"; clase = "alerta"; }
+    else              { texto = "Peligrosamente bajas"; clase = "malo"; }
+    mostrar("rpm", "resultado-rpm", v, texto, clase);
+    guardarLectura("rpm", v);
 }

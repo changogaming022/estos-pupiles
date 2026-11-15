@@ -1,15 +1,13 @@
 function evaluarTc() {
-    const tc = parseFloat(document.getElementById("tc").value);
+    const v = parseFloat(document.getElementById("tc").value);
     const res = document.getElementById("resultado-tc");
-    if (isNaN(tc)) { res.textContent = "Escribe un valor válido"; pintarEstado("cuadro-tc", "inválido"); return { valor: "-", estado: "inválido" }; }
-    let texto;
-    if (tc >= 38.9)      texto = "peligrosamente alta";
-    else if (tc >= 37.3) texto = "preocupante";
-    else if (tc >= 36.1) texto = "estable";
-    else if (tc >= 35.0) texto = "baja";
-    else                 texto = "peligrosamente baja";
-    res.textContent = "Temperatura corporal " + texto + " con " + tc + "°C";
-    pintarEstado("cuadro-tc", texto);
-    guardarLectura("tc", tc);
-    return { valor: tc, estado: texto };
+    if (isNaN(v)) { res.textContent = "Escribe un valor válido"; res.className = "estado"; return; }
+    let texto, clase;
+    if (v >= 38.9)      { texto = "Peligrosamente alta"; clase = "malo"; }
+    else if (v >= 37.3) { texto = "Preocupante"; clase = "alerta"; }
+    else if (v >= 36.1) { texto = "Estable"; clase = "ok"; }
+    else if (v >= 35.0) { texto = "Baja"; clase = "alerta"; }
+    else              { texto = "Peligrosamente baja"; clase = "malo"; }
+    mostrar("tc", "resultado-tc", v, texto, clase);
+    guardarLectura("tc", v);
 }
